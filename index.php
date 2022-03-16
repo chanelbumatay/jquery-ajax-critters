@@ -15,7 +15,7 @@
   
 <body>
 <h2>AJAX Pet Adoption Agency</h2>
-<p>This page uses AJAX to choose images and answers from the form. You'll get a new pet once the form is completed.</p>
+<p>Below is a starter page for the AJAX Pet Adoption Agency assignment.</p>
 <div id="output">
 <form id="myForm" action="" method="get">
 
@@ -48,7 +48,7 @@
    </div>
 
   
-   <div><input type="submit" value="text" /></div>
+   <div><input type="submit" value="submit it!" /></div>
 </form>
 </div>
   
@@ -56,107 +56,207 @@
 <script>
 
 
-
-		function titleCase(str) {
-				str = str.toLowerCase().split(' ');
-				for (var i = 0; i < str.length; i++) {
-					str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1); 
-				}
-				return str.join(' ');
-		}
+  
     $("document").ready(function(){
         
-        // Hide likes and eats
+        //hide likes and eats 
         $('#pet_likes').hide();
         $('#pet_eats').hide();
-				$('#pet_name').hide();
-        // on click of feels, likes is shown
+        $('#pet_name').hide();
+
+      
+        //on click of feels, likes is shown 
         $('#pet_feels').click(function(){
-           $('#pet_likes').slideDown(200);
+          $('#pet_likes').slideDown(200);
         });
 
-        // on click of likes, eats is shown
+        
         $('#pet_likes').click(function(){
-           $('#pet_eats').slideDown(200);
+          $('#pet_eats').slideDown(200);
         });
 
-				$('#pet_likes').click(function(){
-           $('#pet_eats').slideDown(200);
+      
+        $('#pet_eats').click(function(){
+          $('#pet_name').slideDown(200);
         });
 
-					$('#pet_eats').click(function(){
-           $('#pet_name').slideDown(200);
-        });
-				
+            
+      
         $('#myForm').submit(function(e){
             e.preventDefault();//no need to submit as you'll be doing AJAX on this page
             let feels = $("input[name=feels]:checked").val();
             let likes = $("input[name=likes]:checked").val();
             let eats = $("input[name=eats]:checked").val();
-						let name = $("input[name=name]").val();
-						name = titleCase(name);
+            let name = $("input[name=name]").val();
+            let pet = "";
+
+                   
+
+
+
+
           
-						let pet = "";
-						//alert(pet);
-            
 
-            if(feels=="fluffy" && likes=="petted" && eats=="carrots"){
-              pet = 'rabbit';
-            }
-						if(feels=="fluffy" && likes=="petted" && eats=="other people's pets"){
-							pet = 'bermese';
-						}
-						if(feels=="fluffy" && likes=="ridden" && eats=="carrots"){
-							pet = 'pig';
-						}
-						if(feels=="fluffy" && likes=="ridden" && eats=="other people's pets"){
-							pet = 'dane';
-						}
-						if(feels=="scaly" && likes=="petted" && eats=="carrots"){
-              pet = 'bird';
-            }
-						
-						 if(feels=="scaly" && likes=="petted" && eats=="other people's pets"){
-              pet = 'hedgehog';
-            }
-						if(feels=="scaly" && likes=="ridden" && eats=="carrots"){
-              pet = 'bulldog';
-            }
-						 if(feels=="scaly" && likes=="ridden" && eats=="other people's pets"){
-              pet = 'velociraptor';
-            }
-            
+            //135
+            if(feels == "fluffy" && likes == "petted" && eats == "carrots"){
+              pet = "rabbit";
 
-            // where we will store all data to show
-            var output = '';
-            output += `<p> Congrats! You have a new pet ${pet} named ${name}. ${name} is ${feels}, they like to be ${likes} and their favorite food to eat is ${eats}.  </p>`;
-       
-						//Get server side data using AJAX
-						$.get( "includes/get_pet.php", { critter: pet } )
- 						.done(function( data ) {
-  				  //alert( "Data Loaded: " + data );
-						 $('#output').html(data + output);
- 						})
+              output += `<p>Your pet's name is ${titleName}`;
+              output += `<p>Your pet is a Bulldog</p>`;
+              output += `<p>Your pet feels ${feels}</p>`;
+              output += `<p>Your pet likes to be ${likes}</p>`;
+              output += `<p>Your pet likes to eat ${eats}</p>`;
+            }
 
+                      //136
+            if(feels == "fluffy" && likes == "petted" && eats == "pets"){
+              pet = "pom";
+
+              output += `<p>Your pet's name is ${titleName}`;
+              output += `<p>Your pet is a Pom</p>`;
+              output += `<p>Your pet feels ${feels}</p>`;
+              output += `<p>Your pet likes to be ${likes}</p>`;
+              output += `<p>Your pet likes to eat ${eats}</p>`;
+            }
+
+                      //145
+            if(feels == "fluffy" && likes == "ridden" && eats == "carrots"){
+              pet = "lab";
               
-						 .fail(function(xhr, status, error) {
+              output += `<p>Your pet's name is ${titleName}`;
+              output += `<p>Your pet is a Lab</p>`;
+              output += `<p>Your pet feels ${feels}</p>`;
+              output += `<p>Your pet likes to be ${likes}</p>`;
+              output += `<p>Your pet likes to eat ${eats}</p>`;
+            }
+          
+            //146
+            if(feels == "fluffy" && likes == "ridden" && eats == "pets"){
+              pet = "hedgehog";
+              
+              output += `<p>Your pet's name is ${titleName}`;
+              output += `<p>Your pet is a Hedgehog/p>`;
+              output += `<p>Your pet feels ${feels}</p>`;
+              output += `<p>Your pet likes to be ${likes}</p>`;
+              output += `<p>Your pet likes to eat ${eats}</p>`;
+            }
+
+                      //235
+            if(feels == "scaly" && likes == "petted" && eats == "carrots"){
+              pet = "dane";
+              
+              output += `<p>Your pet's name is ${titleName}`;
+              output += `<p>Your pet is a Dane</p>`;
+              output += `<p>Your pet feels ${feels}</p>`;
+              output += `<p>Your pet likes to be ${likes}</p>`;
+              output += `<p>Your pet likes to eat ${eats}</p>`;
+            }
+
+                      //236
+            if(feels == "scaly" && likes == "petted" && eats == "pets"){
+              pet = "pig";
+               output += `<p>Your pet's name is ${titleName}`;
+              output += `<p>Your pet is a Pig</p>`;
+              output += `<p>Your pet feels ${feels}</p>`;
+              output += `<p>Your pet likes to be ${likes}</p>`;
+              output += `<p>Your pet likes to eat ${eats}</p>`;
+            }
+
+                      //245
+            if(feels == "scaly" && likes == "ridden" && eats == "carrots"){
+              pet = "bad-dog";
+              
+              output += `<p>Your pet's name is ${titleName}`;
+              output += `<p>Your pet is a Bad Dog</p>`;
+              output += `<p>Your pet feels ${feels}</p>`;
+              output += `<p>Your pet likes to be ${likes}</p>`;
+              output += `<p>Your pet likes to eat ${eats}</p>`;
+            }
+          
+            //246
+            if(feels == "scaly" && likes == "ridden" && eats == "pets"){
+              pet = "velociraptor";
+                   
+                       }
+
+
+           //Where data will be stored
+            var output = "";
+            output += `<p> Congrats! You have a new pet ${pet} named ${name}.</p>`;
+            output += `<p> Your pet feels ${feels}</p>`;
+            output += `<p> Your pet likes to be ${likes}</p>`;
+            output += `<p> Your pet likes eat ${eats}</p>`;
+
+          
+           //135
+            if(feels == "fluffy" && likes == "petted" && eats == "carrots"){
+              pet = "rabbit";
+            }
+
+                      //136
+            if(feels == "fluffy" && likes == "petted" && eats == "pets"){
+              pet = "pom";
+            }
+
+                      //145
+            if(feels == "fluffy" && likes == "ridden" && eats == "carrots"){
+              pet = "lab";
+            }
+          
+            //146
+            if(feels == "fluffy" && likes == "ridden" && eats == "pets"){
+              pet = "hedgehog";
+            }
+
+                      //235
+            if(feels == "scaly" && likes == "petted" && eats == "carrots"){
+              pet = "dane";
+            }
+
+                      //236
+            if(feels == "scaly" && likes == "petted" && eats == "pets"){
+              pet = "pig";
+            }
+
+                      //245
+            if(feels == "scaly" && likes == "ridden" && eats == "carrots"){
+              pet = "bad-dog";
+            }
+          
+            //246
+            if(feels == "scaly" && likes == "ridden" && eats == "pets"){
+              pet = "velociraptor";
+            }
+            output += `<p>Your pet is a ${pet}.</p>`;
+            output += `<p>Your pet feels ${feels}.</p>`;
+            output += `<p>Your pet likes to be ${likes}.</p>`;
+            output += `<p>Your pet likes to eat ${eats}.</p>`;
+            //alert(feels);
+
+            $.get( "includes/get_pet.php", { critter: pet} )
+            .done (function( data ){
+
+              //output submitted info and replace form
+            $('#output').html(data + output);
+              
+              //alert( "Data Loaded: " + data );
+            })
+                    .fail(function(xhr, status, error) {
                //Ajax request failed.
                var errorMessage = xhr.status + ': ' + xhr.statusText
                alert('Error - ' + errorMessage);
            });
-
           
+          
+  
            
           
-          
+
 
         });
 
     });
 
-   
-    
    </script>
 </body>
 </html>
-
